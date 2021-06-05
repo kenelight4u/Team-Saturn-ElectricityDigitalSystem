@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace EDSCustomerPortal.Menu
 {
-    public class SubscriptionMenuNav
+    public class SubscriptionMenu
     {
         readonly IAuthenticationService authenticationService = new AuthenticationService();
 
@@ -66,10 +66,6 @@ namespace EDSCustomerPortal.Menu
             //        AuthenticationService.RegisterSubscription(electricityTariffPayment);
             //    }
             //}
-
-
-            
-
 
         }
 

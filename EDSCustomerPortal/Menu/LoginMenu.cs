@@ -12,29 +12,19 @@ namespace EDSCustomerPortal.Menu
 {
     public class LoginMenu
     {
-        readonly SubscriptionMenuNav subscriptionMenuNav = new SubscriptionMenuNav();
+        readonly SubscriptionMenu subscriptionMenuNav = new SubscriptionMenu();
 
         readonly IAuthenticationService authenticationService = new AuthenticationService();
         public void ViewCustomerData(string id)
         {
-            List<string> myvalues = new List<string>
-            {
-                authenticationService.GetCustomerById(id).FirstName,
-                authenticationService.GetCustomerById(id).LastName,
-                authenticationService.GetCustomerById(id).EmailAddress,
-                authenticationService.GetCustomerById(id).PhoneNumber,
-                authenticationService.GetCustomerById(id).MeterNumber,
-                authenticationService.GetCustomerById(id).CreatedDateTime.ToString()
-            };
-
             Console.WriteLine();
-            Console.WriteLine($"{"First Name", -10} .....");
-            //Add formatted Heading....
-            foreach (var item in myvalues)
-            {
-                Console.Write($"{item}  ");
-            }
-            
+            Console.WriteLine($"{"Full Name",-20} : {authenticationService.GetCustomerById(id).FirstName} {authenticationService.GetCustomerById(id).LastName}");
+            Console.WriteLine($"{"Email Address",-20} : {authenticationService.GetCustomerById(id).EmailAddress} ");
+            Console.WriteLine($"{"Phone Number",-20} : {authenticationService.GetCustomerById(id).PhoneNumber} ");
+            Console.WriteLine($"{"Meter Number",-20} : {authenticationService.GetCustomerById(id).MeterNumber} ");
+            Console.WriteLine($"{"Created Date Time", -20} : {authenticationService.GetCustomerById(id).CreatedDateTime} ");
+            Console.WriteLine($"{"Modified Date Time",-20} : {authenticationService.GetCustomerById(id).ModifiedDateTime} ");
+
             Console.ReadKey();
         }
 
@@ -105,24 +95,16 @@ namespace EDSCustomerPortal.Menu
 
             try
             {
-                List<string> subcriptionValues = new List<string>
-                {
-                    authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).MeterNumber,
-                    authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).TariffId,
-                    authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).PricePerUnit,
-                    authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).AmountPaid,
-                    authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).NumberOfUnit,
-                    authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).DateOfPayment.ToString()
-                };
-
                 Console.WriteLine();
-                Console.WriteLine($"{"Meter Number",-20} .....");
+                Console.WriteLine($"Details for Meter Number : {meterNumber}");
 
-                //Add formatted Heading....
-                foreach (var item in subcriptionValues)
-                {
-                    Console.Write($"{item}  ");
-                }
+                Console.WriteLine($"{"Tarrif Subscribed To",-25} : {authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).TariffId}");
+                Console.WriteLine($"{"Price per Unit",-25} : #{authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).PricePerUnit}");
+                Console.WriteLine($"{"Number of Unit",-25} : {authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).NumberOfUnit}");
+                Console.WriteLine($"{"Amount Paid",-25} : {authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).AmountPaid}");
+                Console.WriteLine($"{"Date of Subscription",-25} : {authenticationService.ViewCustomerSubscriptionByMeterNumber(meterNumber).DateOfPayment}");
+                Console.WriteLine();
+                
 
                 Console.ReadKey();
             }
