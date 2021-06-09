@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+	<Folder Include="Interfaces\" />
+	<Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ElectricityDigitalSystem\ElectricityDigitalSystem.csproj" />
+	<ProjectReference Include="..\ElectricityDigitalSystem\ElectricityDigitalSystem.csproj" />
   </ItemGroup>
 
 </Project>

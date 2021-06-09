@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EDSAgentPortal.AgentMenu;
+using System;
 
 namespace EDSAgentPortal
 {
@@ -6,7 +7,8 @@ namespace EDSAgentPortal
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            AgentMenuNav agentMenuNav = new AgentMenuNav();
+            agentMenuNav.PageMenuNav();
         }
     }
 }

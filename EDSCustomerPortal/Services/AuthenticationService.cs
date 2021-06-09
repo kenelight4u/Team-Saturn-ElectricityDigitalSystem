@@ -8,8 +8,7 @@ using System.Text;
 namespace EDSCustomerPortal.Services
 {
     public class AuthenticationService : IAuthenticationService
-    {
-        
+    {    
         public string RegisterUser(CustomerModel model)
         {
             if(model == null)

@@ -6,10 +6,8 @@ namespace ElectricityDigitalSystem.Models
 {
     public class AgentsModel : BaseUserModel
     {
-        public AgentsModel()
-        {
-            this.Id = "AGT-" + Guid.NewGuid().ToString();
-        }
+        public AgentsModel() => Id = "AGT-" + Guid.NewGuid().ToString();
+
         public string Password { get; set; }
 
     }

@@ -19,6 +19,7 @@ namespace ElectricityDigitalSystem.ClientServices
             else
             {
                 //customer.Id = "CUS-" + Guid.NewGuid().ToString();
+                //customer.MeterNumber = "EDS-" + Guid.NewGuid().ToString();
                 fileService.Database.Customers.Add(customer);
 
                 fileService.SaveChanges();

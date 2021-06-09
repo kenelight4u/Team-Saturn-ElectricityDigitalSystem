@@ -1,43 +1,38 @@
-﻿using EDSCustomerPortal.Services;
-using ElectricityDigitalSystem.ClientServices;
-using ElectricityDigitalSystem.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading;
 
-namespace EDSCustomerPortal.Menu
+namespace EDSAgentPortal.AgentMenu
 {
-    public class MenuNav
+    public class AgentMenuNav
     {
         bool appIsRunning = true;
 
-        public void PageMenu()
+        public void PageMenuNav()
         {
-            Menu menu = new Menu();
+            AgentMenu agentMenu = new AgentMenu();
 
             while (appIsRunning == true)
             {
                 Console.Clear();
-                Console.WriteLine("Welcome To EDS CUSTOMER PORTAL.");
-                Console.WriteLine("Choose an Option : \n1. Login \n2. Register \n3. Close the App");
+                Console.WriteLine("Welcome To EDS AGENT PORTAL.");
+                Console.WriteLine("Choose an Option : \n1. Register \n2. Login \n3. Close the App");
                 string choice = Console.ReadLine();
 
                 switch (choice)
                 {
                     case "1":
-                        menu.LoginNavigationPage();
+                        agentMenu.RegisterAgent();
                         break;
                     case "2":
-                        menu.RegistrationNavigationPage();
+                        agentMenu.LoginAgent();
                         break;
                     case "3":
+                        //Environment.ExitCode();
                         appIsRunning = false;
                         break;
                 }
             }
         }
-
-        
     }
 }
