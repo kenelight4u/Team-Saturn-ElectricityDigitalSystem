@@ -28,8 +28,8 @@ namespace EDSAgentPortal.AgentMenu
                         agentMenu.LoginAgent();
                         break;
                     case "3":
-                        //Environment.ExitCode();
-                        appIsRunning = false;
+                        Environment.Exit(0);
+                        //appIsRunning = false;
                         break;
                 }
             }

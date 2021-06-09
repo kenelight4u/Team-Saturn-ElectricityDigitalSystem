@@ -80,12 +80,9 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.AgentPortfolio
             } while (inputAnother);
 
             agentServices.UpdateAgent(customerDetail);
-            //service.UpdateCustomer(customerDetail);
-
-            //Console.WriteLine("Successful!!!\nLog Out to Effect the Changes....");
-
+            
             Console.WriteLine("Successful!!!\nLogging Out....");
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             agentMenuNav.PageMenuNav();
             
         }
