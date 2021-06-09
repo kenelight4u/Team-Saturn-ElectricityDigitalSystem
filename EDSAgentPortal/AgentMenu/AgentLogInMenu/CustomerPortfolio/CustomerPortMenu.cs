@@ -161,64 +161,72 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
 
         public void UpdatePersonalInfo()
         {
-            //CustomerService service = new CustomerService();
-            //var customerDetail = service.GetCustomerById(id);
-            ////var customerDetail = AuthenticationService.GetCustomerById(id);
-            //bool inputAnother;
+            string result = EmailCheck();
 
-            //do
-            //{
-            //    Console.WriteLine($"What would you like to Update?\n 1. First Name      2. Last Name        3. Email Address        4. Phone Number     5. Password");
-            //    string response = Console.ReadLine();
+            if (result == "Failed")
+            {
+                Console.WriteLine("No Valid Email Found");
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                var customerEmail = agentCustomerServices.GetCustomerByEmail(result);
 
-            //    switch (response)
-            //    {
-            //        case "1":
-            //            Console.WriteLine("Please enter your new First Name :");
-            //            customerDetail.FirstName = Console.ReadLine();
-            //            customerDetail.ModifiedDateTime = DateTime.Now;
-            //            break;
-            //        case "2":
-            //            Console.WriteLine("Please enter your new Last Name :");
-            //            customerDetail.LastName = Console.ReadLine();
-            //            customerDetail.ModifiedDateTime = DateTime.Now;
-            //            break;
-            //        case "3":
-            //            Console.WriteLine("Please enter your new Email Address :");
-            //            customerDetail.EmailAddress = Console.ReadLine();
-            //            customerDetail.ModifiedDateTime = DateTime.Now;
-            //            break;
-            //        case "4":
-            //            Console.WriteLine("Please enter your new Phone Number :");
-            //            customerDetail.PhoneNumber = Console.ReadLine();
-            //            customerDetail.ModifiedDateTime = DateTime.Now;
-            //            break;
-            //        case "5":
-            //            Console.WriteLine("Please enter your new Password :");
-            //            customerDetail.Password = Console.ReadLine();
-            //            customerDetail.ModifiedDateTime = DateTime.Now;
-            //            break;
-            //    }
+                bool inputAnother;
 
-            //    Console.WriteLine("Would you like to update another information? (Y/N)");
-            //    var continueEditing = Console.ReadLine();
+                do
+                {
+                    Console.WriteLine($"What would you like to Update?\n 1. First Name      2. Last Name        3. Email Address        4. Phone Number     5. Password");
+                    string response = Console.ReadLine();
 
-            //    if (continueEditing.ToLower() == "y")
-            //    {
-            //        inputAnother = true;
-            //    }
-            //    else
-            //    {
-            //        inputAnother = false;
-            //    }
+                    switch (response)
+                    {
+                        case "1":
+                            Console.WriteLine("Please enter your new First Name :");
+                            customerEmail.FirstName = Console.ReadLine();
+                            customerEmail.ModifiedDateTime = DateTime.Now;
+                            break;
+                        case "2":
+                            Console.WriteLine("Please enter your new Last Name :");
+                            customerEmail.LastName = Console.ReadLine();
+                            customerEmail.ModifiedDateTime = DateTime.Now;
+                            break;
+                        case "3":
+                            Console.WriteLine("Please enter your new Email Address :");
+                            customerEmail.EmailAddress = Console.ReadLine();
+                            customerEmail.ModifiedDateTime = DateTime.Now;
+                            break;
+                        case "4":
+                            Console.WriteLine("Please enter your new Phone Number :");
+                            customerEmail.PhoneNumber = Console.ReadLine();
+                            customerEmail.ModifiedDateTime = DateTime.Now;
+                            break;
+                        case "5":
+                            Console.WriteLine("Please enter your new Password :");
+                            customerEmail.Password = Console.ReadLine();
+                            customerEmail.ModifiedDateTime = DateTime.Now;
+                            break;
+                    }
 
-            //} while (inputAnother);
+                    Console.WriteLine("Would you like to update another information? (Y/N)");
+                    var continueEditing = Console.ReadLine();
 
-            ////AuthenticationService.UpdateCustomerData(customerDetail);
-            //service.UpdateCustomer(customerDetail);
+                    if (continueEditing.ToLower() == "y")
+                    {
+                        inputAnother = true;
+                    }
+                    else
+                    {
+                        inputAnother = false;
+                    }
 
-            //Console.WriteLine("Successful!!!\nLog Out to Effect the Changes....");
-            //Thread.Sleep(3000);
+                } while (inputAnother);
+
+                agentCustomerServices.UpdateCustomer(customerEmail);
+
+                Console.WriteLine("Successful!!!");
+                Thread.Sleep(3000);
+            }
         }
 
         public void MakeSubscription()

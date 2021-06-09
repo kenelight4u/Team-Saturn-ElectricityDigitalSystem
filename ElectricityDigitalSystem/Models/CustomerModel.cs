@@ -6,10 +6,12 @@ namespace ElectricityDigitalSystem.Models
 {
     public class CustomerModel : BaseUserModel
     {
+        readonly Random meterNumber = new Random();
+
        public CustomerModel()
        {
            this.Id = "CUS-" + Guid.NewGuid().ToString();
-          this.MeterNumber = "EDS-" + Guid.NewGuid().ToString();
+           this.MeterNumber = ($"EDS-{meterNumber.Next(100000000, 999999999)}");
         }
 
         public string MeterNumber { get; set; }
