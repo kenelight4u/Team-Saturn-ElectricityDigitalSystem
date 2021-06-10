@@ -229,22 +229,7 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
             }
         }
 
-        public void MakeSubscription()
-        {
-
-        }
-
-        public void CancelSubscription()
-        {
-
-        }
-
-        public void ViewSubcription()
-        {
-
-        }
-
-        public string EmailCheck()
+        private string EmailCheck()
         {
             Dictionary<string, string> navItemDic = new Dictionary<string, string>();
 

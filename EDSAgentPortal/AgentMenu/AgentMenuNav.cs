@@ -6,7 +6,7 @@ namespace EDSAgentPortal.AgentMenu
 {
     public class AgentMenuNav
     {
-        bool appIsRunning = true;
+        readonly bool appIsRunning = true;
 
         public void PageMenuNav()
         {

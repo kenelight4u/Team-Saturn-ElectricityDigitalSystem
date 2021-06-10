@@ -20,7 +20,7 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu
             while (inLoginPage)
             {
                 Console.Clear();
-               // Console.WriteLine($"welcome {firstName} {lastName}");
+                Console.WriteLine($"{firstName} {lastName}");
                 Console.WriteLine("Welcome To AGENT PORTAL.\n");
                 Console.WriteLine("Choose an Option : \n1. AGENT Dashboard     \n2. CUSTOMER Dashboard   \n3. Log Out");
                 string choice = Console.ReadLine();
