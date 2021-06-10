@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ElectricityDigitalSystem.Models
 {
-    public class CustomerSubcription
+    public class Subscriptions
     {
         public string Id { get; set; }
         public decimal Amount { get; set; }
@@ -12,6 +12,7 @@ namespace ElectricityDigitalSystem.Models
         public string CustomerId { get; set; }
         public string AgentId { get; set; }
         public DateTime SubcriptionDateTime { get; set; } = DateTime.Now;
+        public string SubscriptionStatus { get; set; }
 
     }
 }

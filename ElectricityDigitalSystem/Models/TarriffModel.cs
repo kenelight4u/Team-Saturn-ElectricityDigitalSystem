@@ -10,10 +10,5 @@ namespace ElectricityDigitalSystem.Models
         public string Name { get; set; }
         public decimal PricePerUnit { get; set; }
 
-        //public TarriffModel()
-        //{
-        //    Id = "TRF-" + Guid.NewGuid().ToString();
-        //}
-
     }
 }

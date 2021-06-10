@@ -11,6 +11,8 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
         {
             CustomerPortMenu customerPortMenu = new CustomerPortMenu();
 
+            AgentCustomerSubscriptions agentCustomerSubscriptions = new AgentCustomerSubscriptions();
+
             bool inLoginPage = true;
 
             while (inLoginPage)
@@ -35,16 +37,17 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
                         customerPortMenu.UpdatePersonalInfo();
                         break;
                     case "5":
-                        customerPortMenu.MakeSubscription();
+                        agentCustomerSubscriptions.MakeSubscription(registeringAgent);
                         break;
                     case "6":
-                        customerPortMenu.CancelSubscription();
+                        agentCustomerSubscriptions.CancelCustomerSubscription();
                         break;
                     case "7":
-                        customerPortMenu.ViewSubcription();
+                       agentCustomerSubscriptions.ViewSubscriptionsHistory();
                         break;
                     case "8":
                         inLoginPage = false;
+                        
                         break;
                 }
 
