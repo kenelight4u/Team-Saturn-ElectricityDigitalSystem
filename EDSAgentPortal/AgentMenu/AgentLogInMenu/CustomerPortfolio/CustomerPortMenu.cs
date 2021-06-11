@@ -13,7 +13,7 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
     {
         readonly IAgentCustomerServices agentCustomerServices = new AgentCustomerServices();
 
-        readonly ValidationClass validationClass = new ValidationClass();
+        readonly ValidationClass validation = new ValidationClass();
 
         readonly CustomerPortMenuNav customerPortMenuNav = new CustomerPortMenuNav();
 
@@ -31,6 +31,14 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
             {
                 Console.Write($"Enter your {navigationItems[i]} : ");
                 var value = Console.ReadLine();
+
+                while (string.IsNullOrEmpty(value))
+                {
+                    Console.WriteLine($"{navigationItems[i]} cannot be left blank");
+                    Console.Write($"{navigationItems[i]} : ");
+                    value = Console.ReadLine();
+                }
+
                 navItemDIc.Add(navigationItems[i], value);
             }
 
@@ -41,45 +49,7 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
             Password = navItemDIc["Password"];
             PhoneNumber = navItemDIc["PhoneNumber"];
 
-            validationClass.CheckInput(FirstName);
-            validationClass.CheckInput(LastName);
-            validationClass.CheckInput(Email);
-            validationClass.CheckInput(Password);
-            //while (string.IsNullOrEmpty(FirstName))
-            //{
-            //    Console.WriteLine("\n\n\t\tFirst name cannot be left blank");
-            //    Console.Write("\t\tFirst Name : ");
-            //    FirstName = Console.ReadLine();
-            //}
-
-            //while (string.IsNullOrEmpty(LastName))
-            //{
-            //    Console.WriteLine("\n\t\tLast name cannot be left blank");
-            //    Console.Write("\t\tLast Name : ");
-            //    LastName = Console.ReadLine();
-            //}
-
-            //while (string.IsNullOrEmpty(Email))
-            //{
-            //    Console.WriteLine("\n\t\tEmail cannot be left blank");
-            //    Console.Write("\t\tEmail : ");
-            //    Email = Console.ReadLine();
-            //}
-
-            //while (string.IsNullOrEmpty(Password))
-            //{
-            //    Console.WriteLine("\n\t\tPassword cannot be left blank");
-            //    Console.Write("\t\tPassword : ");
-            //    Password = Console.ReadLine();
-            //}
-
-            ulong number;
-            while (!ulong.TryParse(PhoneNumber, out number))
-            {
-                Console.WriteLine("Please enter an 11 digit number");
-                Console.Write("Phone Number : ");
-                PhoneNumber = Console.ReadLine();
-            }
+            ulong number = validation.CheckPhoneNumber(PhoneNumber);
 
             CustomerModel model = new CustomerModel
             {
@@ -99,6 +69,7 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
                 Console.WriteLine("Registration Successful");
                 Console.WriteLine("Redirecting you to Home Page....");
                 Thread.Sleep(3000);
+                customerPortMenuNav.CustomerPortPageMenuNav(registeringAgent);
             }
             else
             {

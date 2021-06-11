@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ElectricityDigitalSystem.Common.ISubTarServices
+namespace ElectricityDigitalSystem.Common.ISubscriptionsServices
 {
     public interface ITariffServices
     {

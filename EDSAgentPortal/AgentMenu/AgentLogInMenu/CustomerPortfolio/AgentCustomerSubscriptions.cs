@@ -1,7 +1,7 @@
 ﻿using ElectricityDigitalSystem.AgentServices;
 using ElectricityDigitalSystem.AgentServices.IServices;
 using ElectricityDigitalSystem.Common;
-using ElectricityDigitalSystem.Common.ISubTarServices;
+using ElectricityDigitalSystem.Common.ISubscriptionsServices;
 using ElectricityDigitalSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -26,8 +26,7 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
         public void CancelCustomerSubscription()
         {
             Console.Clear();
-            Console.WriteLine("\t\tWould you like to cancel your active subscription?\n1 : Yes\n\t\t2 : No");
-            Console.Write($"\t\t  : ");
+            Console.WriteLine("Would you like to cancel your active subscription?\n1 : Yes\n2 : No");
             var entry = Console.ReadLine();
             switch (entry)
             {
@@ -219,6 +218,7 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
             }
 
         }
+
         private void CalculateTotalUnit(int unitToBePurchased, decimal pricePerUnit, string tariffId, string registeringAgent, string customerToBeSubscribeID)
         {
             decimal totalAmountPurchased = Convert.ToDecimal(unitToBePurchased) * pricePerUnit;
@@ -263,6 +263,7 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
 
         }
 
+
         public void ViewSubscriptionsHistory()
         {
             //Show all Tariff
@@ -289,12 +290,12 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
                 else
                 {
                     Console.WriteLine("Subscription History\n");
-                    Console.WriteLine("Tariff Name\t\tAmount\t\t\tSubscription Date\t\tSubscription Status\n\n");
+                    Console.WriteLine($"{"Tariff Name", -20}\tAmount\t\t\tSubscription Date\t\tSubscription Status\n\n");
                     foreach (var subscription in subscriptions)
                     {
                         tariffName = subscription.TariffId;
                         var customerTariff = tariffServices.GetTarriffById(tariffName);
-                        Console.Write($"{customerTariff.Name}\t#{subscription.Amount}\t\t{subscription.SubcriptionDateTime}\t\t{subscription.SubscriptionStatus}\n\n");
+                        Console.Write($"{customerTariff.Name, -20}\t#{subscription.Amount}\t\t{subscription.SubcriptionDateTime}\t\t{subscription.SubscriptionStatus}\n");
                     }
                     Console.ReadKey();
                 }

@@ -6,15 +6,18 @@ namespace EDSAgentPortal.Validation
 {
     public class ValidationClass
     {
-        public string CheckInput(string value)
+       
+        public ulong CheckPhoneNumber(string password)
         {
-            while (string.IsNullOrEmpty(value))
+            ulong number;
+            while (!ulong.TryParse(password, out number))
             {
-                Console.WriteLine($"{value} cannot be left blank");
-                Console.Write($" {value} : ");
-                value = Console.ReadLine();
+                Console.WriteLine("Please enter an 11 digit number");
+                Console.Write("Phone Number : ");
+                password = Console.ReadLine();
             }
-            return value;
+
+            return number;
         }
     }
 }

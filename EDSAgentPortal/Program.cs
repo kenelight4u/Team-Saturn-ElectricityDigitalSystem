@@ -1,6 +1,6 @@
 ﻿using EDSAgentPortal.AgentMenu;
 using ElectricityDigitalSystem.Common;
-using ElectricityDigitalSystem.Common.ISubTarServices;
+using ElectricityDigitalSystem.Common.ISubscriptionsServices;
 using System;
 
 namespace EDSAgentPortal
