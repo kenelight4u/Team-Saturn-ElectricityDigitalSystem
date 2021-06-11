@@ -35,6 +35,14 @@ namespace EDSAgentPortal.AgentMenu
             {
                 Console.Write($"Enter your {navigationItems[i]} : ");
                 var value = Console.ReadLine();
+
+                while (string.IsNullOrEmpty(value))
+                {
+                    Console.WriteLine($"{navigationItems[i]} cannot be left blank");
+                    Console.Write($"{navigationItems[i]} : ");
+                    value = Console.ReadLine();
+                }
+
                 navItemDIc.Add(navigationItems[i], value);
             }
 
@@ -45,46 +53,8 @@ namespace EDSAgentPortal.AgentMenu
             Password = navItemDIc["Password"];
             PhoneNumber = navItemDIc["PhoneNumber"];
 
-            validation.CheckInput(FirstName);
-            validation.CheckInput(LastName);
-            validation.CheckInput(Email);
-            validation.CheckInput(Password);
-            //while (string.IsNullOrEmpty(FirstName))
-            //{
-            //    Console.WriteLine("\n\n\t\tFirst name cannot be left blank");
-            //    Console.Write("\t\tFirst Name : ");
-            //    FirstName = Console.ReadLine();
-            //}
-
-            //while (string.IsNullOrEmpty(LastName))
-            //{
-            //    Console.WriteLine("\n\t\tLast name cannot be left blank");
-            //    Console.Write("\t\tLast Name : ");
-            //    LastName = Console.ReadLine();
-            //}
-
-            //while (string.IsNullOrEmpty(Email))
-            //{
-            //    Console.WriteLine("\n\t\tEmail cannot be left blank");
-            //    Console.Write("\t\tEmail : ");
-            //    Email = Console.ReadLine();
-            //}
-
-            //while (string.IsNullOrEmpty(Password))
-            //{
-            //    Console.WriteLine("\n\t\tPassword cannot be left blank");
-            //    Console.Write("\t\tPassword : ");
-            //    Password = Console.ReadLine();
-            //}
-
-            ulong number;
-            while (!ulong.TryParse(PhoneNumber, out number))
-            {
-                Console.WriteLine("Please enter an 11 digit number");
-                Console.Write("Phone Number : ");
-                PhoneNumber = Console.ReadLine();
-            }
-
+            ulong number = validation.CheckPhoneNumber(PhoneNumber);
+            
             AgentsModel model = new AgentsModel
             {
                 FirstName = FirstName,
@@ -111,27 +81,14 @@ namespace EDSAgentPortal.AgentMenu
 
         public void LoginAgent()
         {
-            Dictionary<string, string> navItemDic = new Dictionary<string, string>();
-
-            List<string> navigationItem = new List<string>
-            {
-                "Email", "Password"
-            };
+            string Email, Password;
 
             Console.Clear();
             Console.WriteLine("Please Login with your Email and Password");
-
-            for (var i = 0; i < navigationItem.Count; i++)
-            {
-                Console.Write($"Please Enter your {navigationItem[i]} : ");
-                var value = Console.ReadLine();
-                navItemDic.Add(navigationItem[i], value);
-            }
-
-            string Email, Password;
-
-            Email = navItemDic["Email"];
-            Password = navItemDic["Password"];
+            Console.Write($"Please Enter your Email : ");
+            Email = Console.ReadLine();
+            Console.Write($"Please Enter your Password : ");
+            Password = Security.ReadPassword();
 
             var agent = agentServices.GetAgentByEmail(Email);
             
@@ -146,7 +103,7 @@ namespace EDSAgentPortal.AgentMenu
             {
                 if (agent.Password != Password)
                 {
-                    Console.WriteLine("Invalid Login Credentials Please Try Again");
+                    Console.WriteLine("Invalid Login Credentials \nPlease Create an Account!");
                     Thread.Sleep(3000);
 
                     agentMenuNav.PageMenuNav();
@@ -159,9 +116,6 @@ namespace EDSAgentPortal.AgentMenu
                 }
             }
         }
-
-
-
     }
 }
 
