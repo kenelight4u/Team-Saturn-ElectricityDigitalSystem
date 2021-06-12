@@ -41,11 +41,10 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
                     CancelCustomerSubscription();
                     break;
             }
-
         }
+
         public void CancelSub()
         {
-            //Show all Tariff
             Console.Clear();
             var userEmailCheck = EmailCheck();
 
@@ -63,7 +62,6 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
                 {
                     Console.WriteLine("\nYou do not have an Active subscription");
                     Thread.Sleep(3000);
-                    //HomeMenu.UserContinuation();
                 }
                 else
                 {
@@ -72,19 +70,14 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
                         item.SubscriptionStatus = "Inactive";
                         subscriptionServices.UpdateSubscription(item);
                         Console.WriteLine("\nSubscription cancelled successfully");
-
                     }
                     Thread.Sleep(3000);
-                    //HomeMenu.UserContinuation();
                 }
             }
-            
-
         }
 
         public void MakeSubscription(string registeringAgent)
         {
-            //Show all Tariff
             Console.Clear();
             var userEmailCheck = EmailCheck();
 
@@ -98,9 +91,9 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
                 var customerToBeSubscribeID = agentCustomerServices.GetCustomerByEmail(userEmailCheck).Id;
                 var activeSub = subscriptionServices.CheckActiveSubscription(customerToBeSubscribeID);
 
-
                 if (activeSub.Count != 0)
                 {
+                    //Show all Tariff
                     Console.WriteLine("You currently have an active subscription \nBuying a new Subscription will deactivate your previous subscription");
                     Console.WriteLine("1 : Continue \n2 : Back to Home ");
                     string entry = Console.ReadLine();
@@ -112,21 +105,17 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
                             break;
                         case "2":
                             customerPortMenuNav.CustomerPortPageMenuNav(registeringAgent);
-                            //HomeMenu.CurrentStage = 1;
                             break;
                         default:
                             MakeSubscription(registeringAgent);
                             break;
                     }
-
                 }
                 else
                 {
                     MakeSubscriptionPayment(registeringAgent, customerToBeSubscribeID);
                 }
-            }
-
-            
+            } 
         }
 
         private void MakeSubscriptionPayment(string registeringAgent, string customerToBeSubscribeID)
@@ -252,12 +241,10 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
                     subscriptionServices.MakeSubscription(subscriptions);
                     Console.WriteLine("Successfull!!!");
                     Thread.Sleep(3000);
-                    //customerPortMenuNav.CustomerPortPageMenuNav(registeringAgent);
                     break;
                 case "2":
-                    Console.WriteLine("Processing...");
+                    Console.WriteLine("Cancelled!!!\nRedirecting....");
                     Thread.Sleep(3000);
-                    //customerPortMenuNav.CustomerPortPageMenuNav(registeringAgent);
                     break;
             }
 
@@ -266,7 +253,6 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
 
         public void ViewSubscriptionsHistory()
         {
-            //Show all Tariff
             Console.Clear();
             var userEmailCheck = EmailCheck();
 
@@ -304,28 +290,18 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
 
         private string EmailCheck()
         {
-            Dictionary<string, string> navItemDic = new Dictionary<string, string>();
-
-            List<string> navigationItem = new List<string>
-            {
-                "Email"
-            };
-
             Console.Clear();
-            Console.WriteLine("Please Can I have your Email you used in Registering :");
+            Console.WriteLine("Please Can I have the Email you used in Registering :");
+            Console.Write("The Email Address : ");
+            string email = Console.ReadLine();
 
-            for (var i = 0; i < navigationItem.Count; i++)
+            while (string.IsNullOrEmpty(email))
             {
-                Console.Write($"Please Enter your {navigationItem[i]} : ");
-                var value = Console.ReadLine();
-                navItemDic.Add(navigationItem[i], value);
+                Console.Write("Please Enter an Email Address : ");
+                email = Console.ReadLine();
             }
 
-            string Email;
-
-            Email = navItemDic["Email"];
-
-            var customer = agentCustomerServices.GetCustomerByEmail(Email);
+            var customer = agentCustomerServices.GetCustomerByEmail(email);
 
             if (customer == null)
             {

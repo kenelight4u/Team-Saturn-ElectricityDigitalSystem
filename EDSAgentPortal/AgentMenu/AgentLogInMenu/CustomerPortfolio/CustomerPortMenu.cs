@@ -77,8 +77,6 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
 
                 customerPortMenuNav.CustomerPortPageMenuNav(registeringAgent);
             }
-                
-
         }
 
         public void ViewCustomerInfo()
@@ -202,44 +200,27 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
 
         private string EmailCheck()
         {
-            Dictionary<string, string> navItemDic = new Dictionary<string, string>();
-
-            List<string> navigationItem = new List<string>
-            {
-                "Email"
-            };
-
             Console.Clear();
-            Console.WriteLine("Please Can I have your Email you used in Registering :");
+            Console.WriteLine("Please Can I have the Email you used in Registering :");
+            Console.Write("The Email Address : ");
+            string email = Console.ReadLine();
 
-            for (var i = 0; i < navigationItem.Count; i++)
+            while (string.IsNullOrEmpty(email))
             {
-                Console.Write($"Please Enter your {navigationItem[i]} : ");
-                var value = Console.ReadLine();
-                navItemDic.Add(navigationItem[i], value);
+                Console.Write("Please Enter an Email Address : ");
+                email = Console.ReadLine();
             }
 
-            string Email;
-
-            Email = navItemDic["Email"];
-            // Password = navItemDic["Password"];
-
-            var customer = agentCustomerServices.GetCustomerByEmail(Email);
+            var customer = agentCustomerServices.GetCustomerByEmail(email);
 
             if (customer == null)
             {
                 return "Failed";
-               // Console.WriteLine("No Valid Email Found");
-               // Thread.Sleep(3000);
             }
             else
             {
                 return customer.EmailAddress;
             }
         }
-
-
-
-
     }
 }

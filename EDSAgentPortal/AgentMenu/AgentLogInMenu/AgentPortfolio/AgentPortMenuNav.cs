@@ -8,11 +8,8 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.AgentPortfolio
     {
         readonly AgentPortMenu agentPortMenu = new AgentPortMenu();
 
-       // readonly LogInMenuNav logInMenuNav = new LogInMenuNav();
-
         public void AgentPortPageMenuNav(string id, string firstName, string lastName)
         {
-
             bool inLoginPage = true;
 
             while (inLoginPage)
@@ -31,14 +28,10 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.AgentPortfolio
                         agentPortMenu.UpdatePersonalInfo(id);
                         break;
                     case "3":
-                        // logInMenuNav.LogInPageMenuNav();
                         inLoginPage = false;
                         break;
                 }
-
-
             }
-
         }
     }
 }

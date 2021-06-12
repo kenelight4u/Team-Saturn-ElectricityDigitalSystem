@@ -29,7 +29,6 @@ namespace EDSAgentPortal.AgentMenu
                         break;
                     case "3":
                         Environment.Exit(0);
-                        //appIsRunning = false;
                         break;
                 }
             }
