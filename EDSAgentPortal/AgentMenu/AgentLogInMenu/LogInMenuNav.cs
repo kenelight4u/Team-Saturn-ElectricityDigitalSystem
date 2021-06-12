@@ -8,7 +8,6 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu
 {
     public class LogInMenuNav
     { 
-
         public void LogInPageMenuNav(string id, string firstName, string lastName)
         {
             AgentPortMenuNav agentPortMenuNav = new AgentPortMenuNav();
@@ -37,10 +36,7 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu
                         inLoginPage = false;
                         break;
                 }
-
-
             }
-
         }
     }
 }

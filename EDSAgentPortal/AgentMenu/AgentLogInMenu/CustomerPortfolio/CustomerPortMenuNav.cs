@@ -50,10 +50,7 @@ namespace EDSAgentPortal.AgentMenu.AgentLogInMenu.CustomerPortfolio
                         
                         break;
                 }
-
-
             }
-
         }
     }
 }

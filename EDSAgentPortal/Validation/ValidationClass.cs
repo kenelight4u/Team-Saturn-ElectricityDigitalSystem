@@ -5,8 +5,7 @@ using System.Text;
 namespace EDSAgentPortal.Validation
 {
     public class ValidationClass
-    {
-       
+    {  
         public ulong CheckPhoneNumber(string password)
         {
             ulong number;
@@ -16,7 +15,6 @@ namespace EDSAgentPortal.Validation
                 Console.Write("Phone Number : ");
                 password = Console.ReadLine();
             }
-
             return number;
         }
     }
